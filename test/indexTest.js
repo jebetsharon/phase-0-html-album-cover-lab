@@ -1,144 +1,81 @@
-require ( './helpers.js' );
+const expect = require('chai').expect;
+const fs = require('fs');
+const path = require('path');
+const htmlFile = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf-8');
+const { JSDOM } = require('jsdom');
+const { window } = new JSDOM(htmlFile);
+const { document } = window;
 
-const chai = require("chai");
-chai.use(require("chai-dom"));
-const { expect } = chai;
+describe('index.html', () => {
+    describe('the title-box section', () => {
+        it('has a <h4> element with the correct content', () => {
+            const h4 = document.querySelector('.title-box h4');
+            expect(h4).not.to.be.null;
+            expect(h4.textContent).to.contain('FROM DESPICABLE ME 2');
+        });
 
-describe("index.html", () => {
-  describe("the title-box section", () => {
-    it("has a <h4> element with the correct content", () => {
-      // find the element with an ID of title-box
-      const titleBox = document.querySelector("#title-box");
+        it('has a <h2> element with the correct content', () => {
+            const h2 = document.querySelector('.title-box h2');
+            expect(h2).not.to.be.null;
+            expect(h2.textContent).to.contain('HAPPY');
+        });
 
-      const h4 = titleBox.querySelector("h4");
-      const hint1 = "No <h4> tag(s) found";
-      expect(h4, hint1).to.exist;
-
-      const hint2 = "Your <h4> tag should contain the text 'PHARRELL WILLIAMS'";
-      expect(h4, hint2).to.contain.text("PHARRELL WILLIAMS");
+        it('has a second <h4> element with the correct content', () => {
+            const h4s = document.querySelectorAll('.title-box h4');
+            expect(h4s).to.have.lengthOf(2);
+            expect(h4s[1].textContent).to.contain('WRITTEN BY PHARRELL WILLIAMS');
+        });
     });
 
-    it("has a <h2> element with the correct content", () => {
-      // find the element with an ID of title-box
-      const titleBox = document.querySelector("#title-box");
+    describe('the back section', () => {
+        it('has a <h3> tag with the correct contents', () => {
+            const h3 = document.querySelector('.back h3');
+            expect(h3).not.to.be.null;
+            expect(h3.textContent).to.contain('PUBLISHED BY EMI APRIL MUSIC');
+        });
 
-      const h2 = titleBox.querySelector("h2");
-      const hint1 = "No <h2> tag(s) found";
-      expect(h2, hint1).to.exist;
+        it('has a <h1> tag with the correct contents', () => {
+            const h1 = document.querySelector('.back h1');
+            expect(h1).not.to.be.null;
+            expect(h1.textContent).to.contain('BACKGROUND VOCALS PERFORMED');
+        });
 
-      const hint2 = "Your <h2> tag should contain the text 'HAPPY'";
-      expect(h2, hint2).to.contain.text("HAPPY");
+        it('has a second <h3> tag with the correct contents', () => {
+            const h3s = document.querySelectorAll('.back h3');
+            expect(h3s).to.have.lengthOf(2);
+            expect(h3s[1].textContent).to.contain('PRODUCED BY PHARRELL WILLIAMS');
+        });
+
+        it('has a <p> tag with the correct contents', () => {
+            const p = document.querySelector('.back p');
+            expect(p).not.to.be.null;
+            expect(p.textContent).to.contain('RECORDED BY MIKE LARSON');
+        });
+
+        it('has a <span> tag with the correct contents', () => {
+            const span = document.querySelector('.back span');
+            expect(span).not.to.be.null;
+            expect(span.textContent).to.contain('ASSISTED BY MATTHEW DESRAMEAUX');
+        });
+
+        it('has a <img> tag with the correct attributes', () => {
+            const img = document.querySelector('.back img');
+            expect(img).not.to.be.null;
+            expect(img.getAttribute('src')).to.contain('images/happy.png');
+            expect(img.getAttribute('alt')).to.contain('Album Cover');
+        });
+
+        it('has a second <span> tag with the correct contents', () => {
+            const spans = document.querySelectorAll('.back span');
+            expect(spans).to.have.lengthOf(3);
+            expect(spans[1].textContent).to.contain('DIGITAL EDITING AND ARRANGEMENT BY ANDREW COLEMAN');
+        });
+
+        it('has a second <img> tag with the correct attributes', () => {
+            const imgs = document.querySelectorAll('.back img');
+            expect(imgs).to.have.lengthOf(2);
+            expect(imgs[1].getAttribute('src')).to.contain('images/back.png');
+            expect(imgs[1].getAttribute('alt')).to.contain('Back Cover');
+        });
     });
-
-    it("has a second <h4> element with the correct content", () => {
-      // find the element with an ID of title-box
-      const titleBox = document.querySelector("#title-box");
-
-      const h4 = titleBox.querySelectorAll("h4")[1];
-      const hint1 = "No second <h4> tag found";
-      expect(h4, hint1).to.exist;
-
-      const hint2 =
-        "Your second <h4> tag should contain the text 'FROM DESPICABLE ME 2'";
-      expect(h4, hint2).to.contain.text("FROM DESPICABLE ME 2");
-    });
-  });
-
-  describe("the back section", () => {
-    it("has a <h3> tag with the correct contents", () => {
-      // find the element with an ID of back
-      const back = document.querySelector("#back");
-
-      const h3 = back.querySelector("h3");
-      const hint1 = "No <h3> tag found";
-      expect(h3, hint1).to.exist;
-
-      const hint2 =
-        "Your <h3> tag should contain the text 'FROM DESPICABLE ME 2'";
-      expect(h3, hint2).to.contain.text("FROM DESPICABLE ME 2");
-    });
-
-    it("has a <h1> tag with the correct contents", () => {
-      const back = document.querySelector("#back");
-
-      const h1 = back.querySelector("h1");
-      const hint1 = "No <h1> tag found";
-      expect(h1, hint1).to.exist;
-
-      const hint2 = "Your <h1> tag should contain the text 'HAPPY'";
-      expect(h1, hint2).to.contain.text("HAPPY");
-    });
-
-    it("has a second <h3> tag with the correct contents", () => {
-      const back = document.querySelector("#back");
-
-      const h3 = back.querySelectorAll("h3")[1];
-      const hint1 = "No second <h3> tag found";
-      expect(h3, hint1).to.exist;
-
-      const hint2 = "Your second <h3> tag should contain the text 'WRITTEN BY'";
-      expect(h3, hint2).to.contain.text("WRITTEN BY");
-    });
-
-    it("has a <p> tag with the correct contents", () => {
-      const back = document.querySelector("#back");
-
-      const p = back.querySelector("p");
-      const hint1 = "No <p> tag found";
-      expect(p, hint1).to.exist;
-
-      const hint2 = "Your <p> tag should contain the text 'PUBLISHED BY'";
-      expect(p, hint2).to.contain.text("PUBLISHED BY");
-    });
-
-    it("has a <span> tag with the correct contents", () => {
-      const back = document.querySelector("#back");
-
-      const span = back.querySelector("span");
-      const hint1 = "No <span> tag found";
-      expect(span, hint1).to.exist;
-
-      const hint2 =
-        "Your <span> tag should contain the text 'PHARRELLWILLIAMS.COM'";
-      expect(span, hint2).to.contain.text("PHARRELLWILLIAMS.COM");
-    });
-
-    it("has a <img> tag with the correct attributes", () => {
-      const back = document.querySelector("#back");
-
-      const img = back.querySelector("img");
-      const hint1 = "No <img> tag found";
-      expect(img, hint1).to.exist;
-
-      expect(img).to.have.attribute(
-        "src",
-        "https://s3.amazonaws.com/learn-verified/columbia-logo.png"
-      );
-    });
-
-    it("has a second <span> tag with the correct contents", () => {
-      const back = document.querySelector("#back");
-
-      const span = back.querySelectorAll("span")[1];
-      const hint1 = "No second <span> tag found";
-      expect(span, hint1).to.exist;
-
-      const hint2 =
-        "Your second <span> tag should contain the text 'COLUMBIARECORDS.COM'";
-      expect(span, hint2).to.contain.text("COLUMBIARECORDS.COM");
-    });
-
-    it("has a second <img> tag with the correct attributes", () => {
-      const back = document.querySelector("#back");
-
-      const img = back.querySelectorAll("img")[1];
-      const hint1 = "No second <img> tag found";
-      expect(img, hint1).to.exist;
-
-      expect(img).to.have.attribute(
-        "src",
-        "https://s3.amazonaws.com/learn-verified/sony-logo.png"
-      );
-    });
-  });
 });

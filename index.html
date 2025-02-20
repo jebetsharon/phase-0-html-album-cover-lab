@@ -1,45 +1,49 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>HTML Album Cover</title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    <div class="wrapper">
-      <div id="front" class="album">
-        <div id="title-box">
-
-          <!-- Level 4 'PHARRELL WILLIAMS' Header -->
-
-          <!-- Level 2 'HAPPY' Header -->
-
-          <!-- Level 4 '| FROM DESPICABLE ME...' Header -->
-
-        </div>
-      </div>
-
-      <div id="back" class="album">
-
-        <!-- Level 3 '| FROM DESPICABLE ME...' Header -->
-
-        <!-- Level 1 'HAPPY' Header -->
-
-        <!-- Level 3 'WRITTEN BY...' Header -->
-
-        <!-- pararaph text 'PUBLISHED BY...' -->
-
-        <!-- span text 'PHARRELLWILLIAMS.COM' -->
-
-        <!-- display the images hosted on [https://s3.amazonaws.com/learn-verified/columbia-logo.png] -->
-
-        <!-- span text 'COLUMBIARECORDS.COM' -->
-
-        <br>
-
-        <!-- display the images hosted on [https://s3.amazonaws.com/learn-verified/sony-logo.png] -->
-
-      </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Album Cover</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .title-box, .back, .credits {
+            margin: 20px;
+        }
+        img {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-box">
+        <!-- Title section of the album cover -->
+        <h4>FROM DESPICABLE ME 2</h4>
+        <h2>HAPPY</h2>
+        <h4>WRITTEN BY PHARRELL WILLIAMS</h4>
     </div>
-  </body>
+    
+    <div class="back">
+        <!-- Back section of the album cover -->
+        <h3>PUBLISHED BY EMI APRIL MUSIC, INC. OBO ITSELF AND MORE WATERFROM NAZARETH (ASCAP) / UNIVERSAL PICTURES MUSIC (ASCAP)</h3>
+        <h1>BACKGROUND VOCALS PERFORMED BY RHEA DUMMETT, TREVON HENDERSON, ASHLEY L. LEE, SHAMIKA HIGHTOWER, JASMINE MURRAY AND TERRENCE ROLLE</h1>
+        <h3>PRODUCED BY PHARRELL WILLIAMS</h3>
+        <p>RECORDED BY MIKE LARSON FOR I AM OTHER ENTERTAINMENT AT CIRCLE HOUSE STUDIOS, MIAMI, FL</p>
+        <span>ASSISTED BY MATTHEW DESRAMEAUX</span><br>
+        <span>DIGITAL EDITING AND ARRANGEMENT BY ANDREW COLEMAN AND MIKE LARSON FOR I AM OTHER ENTERTAINMENT</span>
+        <img src="images/happy.png" alt="Album Cover"><br>
+        <span>All rights reserved</span><br>
+        <img src="images/back.png" alt="Back Cover">
+    </div>
+    
+    <div class="credits">
+        <!-- Credits section -->
+        <h3>MIXED BY LESLIE BRATHWAITE AT MUSIC BOX STUDIOS, ATLANTA, GA.</h3>
+        <h1>PHARRELLWILLIAMS.COM</h1>
+        <img src="images/columbia-logo.png" alt="Columbia Records Logo"><br>
+        <h3>COLUMBIARECORDS.COM</h3>
+        <img src="images/sony-logo.png" alt="Sony Logo">
+    </div>
+</body>
 </html>
